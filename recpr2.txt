@@ -1,0 +1,109 @@
+b) DDL-ALTER & DROP 
+
+1. Add a column ‘SSN’ at the first position in the table EMPLOYEE 
+
+ ALTER TABLE EMPLOYEE ADD SSN VARCHAR(11) FIRST;
+ 
+Query OK, 0 rows affected (1.83 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+
+2. Change the data type of the column ‘DOB’ in year the table EMPLOYEE
+ 
+ ALTER TABLE EMPLOYEE MODIFY DOB YEAR;
+Query OK, 0 rows affected (2.53 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+ 
+3. Delete the column ‘emp_id’ the table EMPLOYEE. 
+ 
+ ALTER TABLE EMPLOYEE DROP COLUMN emp_id;
+Query OK, 0 rows affected (2.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+ 
+4. Add the constraint unique for columns ‘SSN, ‘adhar_no’ the table EMPLOYEE 
+ 
+ ALTER TABLE EMPLOYEE ADD CONSTRAINT ssn UNIQUE(SSN), ADD CONSTRAINT
+ adh UNIQUE (adhar_no);
+Query OK, 0 rows affected, 2 warnings (0.78 sec)
+Records: 0  Duplicates: 0  Warnings: 2
+
+DESC EMPLOYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| SSN      | int         | YES  | UNI | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| city     | varchar(15) | YES  |     | NULL    |       |
+| DOB      | year        | YES  |     | NULL    |       |
+| adhar_no | int         | YES  | UNI | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+ 
+5. Delete the NULL constraint of ‘age’ in the STUDENT table.
+ 
+ ALTER TABLE STUDENT MODIFY age INT;
+Query OK, 0 rows affected (1.97 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC STUDENT;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int         | NO   | PRI | NULL    |       |
+| name    | varchar(20) | NO   |     | NULL    |       |
+| age     | int         | YES  |     | NULL    |       |
+| address | varchar(20) | YES  |     | NULL    |       |
+| gender  | varchar(5)  | YES  |     | m       |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+  
+6.Change the table name EMPLOYEE as PERSON 
+ 
+ ALTER TABLE EMPLOYEE RENAME TO PERSON;
+Query OK, 0 rows affected (0.62 sec)
+
+mysql> DESC EMPLOYEE;
+ERROR 1146 (42S02): Table 'rc1.EMPLOYEE' doesn't exist
+mysql> DESC PERSON;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| SSN      | int         | YES  | UNI | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| city     | varchar(15) | YES  |     | NULL    |       |
+| DOB      | year        | YES  |     | NULL    |       |
+| adhar_no | int         | YES  | UNI | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SHOW TABLES;
++---------------+
+| Tables_in_rc1 |
++---------------+
+| EPLOYEES      |
+| PERSON        |
+| STUDENT       |
++---------------+
+3 rows in set (0.00 sec)
+ 
+7. Delete the table PERSON.
+
+DROP TABLE PERSON;
+Query OK, 0 rows affected (0.43 sec)
+
+SHOW TABLES;
++---------------+
+| Tables_in_rc1 |
++---------------+
+| EPLOYEES      |
+| STUDENT       |
++---------------+
+2 rows in set (0.01 sec)
+
+
