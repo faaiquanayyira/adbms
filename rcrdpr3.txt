@@ -494,25 +494,42 @@ SELECT * FROM INVOICE_ITEM_2;
  
  3. Delete the purchase details of product ‘pen’ in the in_id ‘101’. 
  
-  DELETE FROM INVOICE_ITEM_2 WHERE inv_id = 201 AND pid = 2;
-Query OK, 1 row affected (0.12 sec)
+  DELETE FROM INVOICE_ITEM_2
+    -> WHERE inv_id = 201
+    -> AND pid IN (
+    ->     SELECT pid FROM PRODUCT
+    ->     WHERE pname = 'Pen'
+    -> );
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM PRODUCT;
++-----+----------+-------+
+| pid | pname    | price |
++-----+----------+-------+
+|   1 | Notebook | 15.81 |
+|   2 | Pen      | 10.20 |
+|   3 | Eraser   |  3.06 |
+|   4 | Marker   | 24.48 |
+|   5 | Stapler  | 17.09 |
+|   6 | Ruler    | 12.24 |
+|   7 | Glue     | 20.91 |
+|   8 | Pen      | 12.00 |
++-----+----------+-------+
+8 rows in set (0.00 sec)
 
  SELECT * FROM INVOICE_ITEM_2;
 +--------+------+----------+
 | inv_id | pid  | quantity |
 +--------+------+----------+
-|    201 |    1 |        5 |
-|    202 |    3 |        5 |
 |    204 |    1 |        2 |
 |    204 |    5 |        4 |
 |    206 |    6 |        3 |
 |    208 |    4 |        2 |
 |    208 |    5 |        3 |
 |    209 |    6 |        4 |
-|    211 |    2 |        2 |
 |    213 |    4 |        3 |
 +--------+------+----------+
-10 rows in set (0.00 sec)
+7 rows in set (0.00 sec)
 
 
  
