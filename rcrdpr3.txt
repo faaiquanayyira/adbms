@@ -1,0 +1,620 @@
+2. DML COMMANDS 
+
+ a) DML -INSERT 
+ 
+ 1. Insert values in EMPLOYEE table. 
+ 
+ INSERT INTO EMPLOYEE (emp_id, name, city, dob, adhar_no, ph_no, address) VALUES
+    -> (301, 'HAVI',    'TVM',      '1995-04-12', NULL, 9876543210, 'MG Road'),
+    -> (302, 'SINU',    'TVM',      '1996-08-23', NULL, NULL,       'Vyttila'),
+    -> (303, 'SAHVA',   'CALICUT',  '1994-12-05', NULL, 9012345678, 'Kozhikode Rd'),
+    -> (304, 'NAFLA',   'KOCHI',    '1997-01-19', NULL, NULL,       'Marine Dr'),
+    -> (305, 'SHAIKHA', 'TRISSUR',  '1993-09-30', NULL, 8899776655, 'Thrissur Town'),
+    -> (306, 'MITTU',   'CALICUT',  '1998-05-14', NULL, 7766554433, 'Palayam'),
+    -> (307, 'FAAIQUA', 'CALICUT',  '1992-12-03', NULL, NULL,       'Beach Rd');
+Query OK, 7 rows affected (0.09 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM EMPLOYEE;
++--------+---------+---------+------------+----------+------------+---------------+
+| emp_id | name    | city    | dob        | adhar_no | ph_no      | address       |
++--------+---------+---------+------------+----------+------------+---------------+
+|    301 | HAVI    | TVM     | 1995-04-12 |     NULL | 9876543210 | MG Road       |
+|    302 | SINU    | TVM     | 1996-08-23 |     NULL |       NULL | Vyttila       |
+|    303 | SAHVA   | CALICUT | 1994-12-05 |     NULL | 9012345678 | Kozhikode Rd  |
+|    304 | NAFLA   | KOCHI   | 1997-01-19 |     NULL |       NULL | Marine Dr     |
+|    305 | SHAIKHA | TRISSUR | 1993-09-30 |     NULL | 8899776655 | Thrissur Town |
+|    306 | MITTU   | CALICUT | 1998-05-14 |     NULL | 7766554433 | Palayam       |
+|    307 | FAAIQUA | CALICUT | 1992-12-03 |     NULL |       NULL | Beach Rd      |
++--------+---------+---------+------------+----------+------------+---------------+
+7 rows in set (0.00 sec)
+
+
+
+ 
+ 2. Insert values in STUDENT table. 
+ 
+ INSERT INTO STUDENT (roll_no, name, age, address, gender) VALUES
+    -> (301, 'FAAIQUA', 18, 'Calicut',  'F'),
+    -> (302, 'MITTU',   19, 'TVM',      'F'),
+    -> (303, 'NAFLA',   17, 'Kochi',    'F'),
+    -> (304, 'SHIKHA',  20, 'Trissur',  'F'),
+    -> (305, 'SAHVA',   18, 'Calicut',  'F'),
+    -> (306, 'SINU',    19, 'TVM',      'F'),
+    -> (307, 'SHAHEEM', 20, 'Kochi',    'M'),
+    -> (308, 'KALEEM',  21, 'Trissur',  'M');
+Query OK, 8 rows affected (0.12 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM STUDENT;
++---------+---------+------+---------+--------+
+| roll_no | name    | age  | address | gender |
++---------+---------+------+---------+--------+
+|     301 | FAAIQUA |   18 | Calicut | F      |
+|     302 | MITTU   |   19 | TVM     | F      |
+|     303 | NAFLA   |   17 | Kochi   | F      |
+|     304 | SHIKHA  |   20 | Trissur | F      |
+|     305 | SAHVA   |   18 | Calicut | F      |
+|     306 | SINU    |   19 | TVM     | F      |
+|     307 | SHAHEEM |   20 | Kochi   | M      |
+|     308 | KALEEM  |   21 | Trissur | M      |
++---------+---------+------+---------+--------+
+8 rows in set (0.00 sec)
+
+ 
+ 
+ 
+ 
+ 3. Insert values in INVOICE database.
+ 
+ 1. CUSTOMER Table
+ Customer(id, name, address, city, ph_no)
+ Insert 7 customers
+ Some customers must not have phone number (ph_no = NULL)
+ At least 2 customers must live in TVM.
+
+use INVOICE
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+
+ CREATE TABLE CUSTOMER (
+    ->     c_id INT PRIMARY KEY,
+    ->     name VARCHAR(15),
+    ->     address VARCHAR(20),
+    ->     city VARCHAR(15),
+    ->     ph_no BIGINT
+    -> );
+Query OK, 0 rows affected (0.61 sec)
+
+INSERT INTO CUSTOMER VALUES
+    -> (1, 'Haviya',   'Kolikkad',   'TVM',       1238765974),
+    -> (2, 'Fathima',  'Thoufeeqe',  'Calicut',   807825453),
+    -> (3, 'Faaiqua',  'Thoufeeqe',  'Calicut',   944625392),
+    -> (4, 'Faariha',  'Thoufeeqe',  'Calicut',   807848452),
+    -> (5, 'Sibugath', 'Thoufeeqe',  'TVM',       458796232),
+    -> (6, 'Sahva',    'Ochath',     'Balussery', NULL),
+    -> (7, 'Sinu',     'Kunnamanglm','Kochi',     NULL);
+Query OK, 7 rows affected (0.10 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+
+ SELECT * FROM CUSTOMER;
++------+----------+-------------+-----------+------------+
+| c_id | name     | address     | city      | ph_no      |
++------+----------+-------------+-----------+------------+
+|    1 | Haviya   | Kolikkad    | TVM       | 1238765974 |
+|    2 | Fathima  | Thoufeeqe   | Calicut   |  807825453 |
+|    3 | Faaiqua  | Thoufeeqe   | Calicut   |  944625392 |
+|    4 | Faariha  | Thoufeeqe   | Calicut   |  807848452 |
+|    5 | Sibugath | Thoufeeqe   | TVM       |  458796232 |
+|    6 | Sahva    | Ochath      | Balussery |       NULL |
+|    7 | Sinu     | Kunnamanglm | Kochi     |       NULL |
++------+----------+-------------+-----------+------------+
+7 rows in set (0.00 sec)
+
+
+
+2. PRODUCT Table
+ Product(pid, pname, price DEFAULT 0)
+ Insert 7 products
+ Some product prices must be less than 25
+
+CREATE TABLE PRODUCT (
+    ->     pid INT PRIMARY KEY,
+    ->     pname VARCHAR(15),
+    ->     price DECIMAL(10,2) DEFAULT 0
+    -> );
+Query OK, 0 rows affected (1.07 sec)
+
+mysql> INSERT INTO PRODUCT VALUES
+    -> (1, 'Notebook', 15.50),
+    -> (2, 'Pen',      5.25),
+    -> (3, 'Eraser',   3.00),
+    -> (4, 'Marker',  24.00),
+    -> (5, 'Stapler', 16.75),
+    -> (6, 'Ruler',   12.00),
+    -> (7, 'Glue',    20.50);
+Query OK, 7 rows affected (0.19 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+
+SELECT * FROM PRODUCT;
++-----+----------+-------+
+| pid | pname    | price |
++-----+----------+-------+
+|   1 | Notebook | 15.50 |
+|   2 | Pen      |  5.25 |
+|   3 | Eraser   |  3.00 |
+|   4 | Marker   | 24.00 |
+|   5 | Stapler  | 16.75 |
+|   6 | Ruler    | 12.00 |
+|   7 | Glue     | 20.50 |
++-----+----------+-------+
+7 rows in set (0.00 sec)
+
+
+3. INVOICE_MASTER_2 Table
+ Invoice_master(inv_id, cust_id (FK), inv_date)
+ All customers must buy at least one product
+ 2 or 3 customers must buy more than 2 times (multiple invoices)
+ Invoice date must be between 01-01-2025 and 31-12-2025
+
+CREATE TABLE INVOICE_MASTER_2 (
+    ->     inv_id INT PRIMARY KEY,
+    ->     cust_id INT,
+    ->     inv_date DATE,
+    ->     FOREIGN KEY (cust_id) REFERENCES CUSTOMER(c_id),
+    ->     CHECK (inv_date BETWEEN '2025-01-01' AND '2025-12-31')
+    -> );
+Query OK, 0 rows affected (1.42 sec)
+
+mysql> INSERT INTO INVOICE_MASTER_2 VALUES
+    -> 
+    -> (201, 1, '2025-01-05'),
+    -> (202, 1, '2025-03-12'),
+    -> (203, 1, '2025-06-18'),
+    -> 
+    -> 
+    -> (204, 2, '2025-02-08'),
+    -> (205, 2, '2025-04-20'),
+    -> (206, 2, '2025-08-10'),
+    -> 
+    -> 
+    -> (207, 3, '2025-01-22'),
+    -> (208, 3, '2025-05-28'),
+    -> (209, 3, '2025-09-15'),
+    -> 
+    -> 
+    -> (210, 4, '2025-07-07'),
+    -> (211, 5, '2025-12-01'),
+    -> (212, 6, '2025-10-10'),
+    -> (213, 7, '2025-11-18');
+Query OK, 13 rows affected (0.10 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+SELECT * FROM INVOICE_MASTER_2;
++--------+---------+------------+
+| inv_id | cust_id | inv_date   |
++--------+---------+------------+
+|    201 |       1 | 2025-01-05 |
+|    202 |       1 | 2025-03-12 |
+|    203 |       1 | 2025-06-18 |
+|    204 |       2 | 2025-02-08 |
+|    205 |       2 | 2025-04-20 |
+|    206 |       2 | 2025-08-10 |
+|    207 |       3 | 2025-01-22 |
+|    208 |       3 | 2025-05-28 |
+|    209 |       3 | 2025-09-15 |
+|    210 |       4 | 2025-07-07 |
+|    211 |       5 | 2025-12-01 |
+|    212 |       6 | 2025-10-10 |
+|    213 |       7 | 2025-11-18 |
++--------+---------+------------+
+13 rows in set (0.00 sec)
+
+
+
+4. INVOICE_ITEM_2 Table
+ Invoice_item(inv_id (FK), pid (FK), quantity)
+ All invoice_master entries must appear here
+ Not all products should be sold (leave at least one product unused)
+ 2 or 3 customers must buy more than 2 products
+ Quantity should vary:
+ Some < 2
+ Some > 2
+
+CREATE TABLE INVOICE_ITEM_2 (
+    ->     inv_id INT,
+    ->     pid INT,
+    ->     quantity INT,
+    ->     FOREIGN KEY (inv_id) REFERENCES INVOICE_MASTER_2(inv_id),
+    ->     FOREIGN KEY (pid) REFERENCES PRODUCT(pid)
+    -> );
+
+Query OK, 0 rows affected (1.34 sec)
+
+mysql> 
+mysql> INSERT INTO INVOICE_ITEM_2 VALUES
+    ->
+    -> (201, 1, 1),
+    -> (201, 2, 3),
+    -> (202, 3, 5),
+    -> (203, 4, 1),
+    -> 
+    -> 
+    -> (204, 1, 2),
+    -> (204, 5, 4),
+    -> (205, 2, 1),
+    -> (206, 6, 3),
+    -> 
+    -> 
+    -> (207, 3, 1),
+    -> (208, 4, 2),
+    -> (208, 5, 3),
+    -> (209, 6, 4),
+    -> 
+    -> 
+    -> (210, 1, 1),
+    -> (211, 2, 2),
+    -> (212, 3, 1),
+    -> (213, 4, 3);
+Query OK, 16 rows affected (0.18 sec)
+Records: 16  Duplicates: 0  Warnings: 0
+
+mysql> SHOW TABLES;
++-------------------+
+| Tables_in_INVOICE |
++-------------------+
+| CUSTOMER          |
+| Customer          |
+| INVOICE_ITEM_2    |
+| INVOICE_MASTER_2  |
+| Invoice_item      |
+| Invoice_master    |
+| PRODUCT           |
+| Product           |
++-------------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM INVOICE_ITEM_2;
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|    201 |    1 |        1 |
+|    201 |    2 |        3 |
+|    202 |    3 |        5 |
+|    203 |    4 |        1 |
+|    204 |    1 |        2 |
+|    204 |    5 |        4 |
+|    205 |    2 |        1 |
+|    206 |    6 |        3 |
+|    207 |    3 |        1 |
+|    208 |    4 |        2 |
+|    208 |    5 |        3 |
+|    209 |    6 |        4 |
+|    210 |    1 |        1 |
+|    211 |    2 |        2 |
+|    212 |    3 |        1 |
+|    213 |    4 |        3 |
++--------+------+----------+
+16 rows in set (0.00 sec)
+ 
+ 
+
+ 
+ 
+ 
+  b) DML - UPDATE 
+  
+ 1. Update the price of a particular product. 
+ 
+UPDATE PRODUCT SET price = 10.00 WHERE pid = 2;
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+SELECT * FROM PRODUCT;
++-----+----------+-------+
+| pid | pname    | price |
++-----+----------+-------+
+|   1 | Notebook | 15.50 |
+|   2 | Pen      | 10.00 |
+|   3 | Eraser   |  3.00 |
+|   4 | Marker   | 24.00 |
+|   5 | Stapler  | 16.75 |
+|   6 | Ruler    | 12.00 |
+|   7 | Glue     | 20.50 |
++-----+----------+-------+
+7 rows in set (0.00 sec)
+
+
+ 
+ 2. Change the name of city ‘calicut’ to ‘kozhikode’ in the customer table. 
+ 
+ UPDATE CUSTOMER SET city = 'Kozhikode' WHERE city = 'Calicut';
+Query OK, 3 rows affected (0.13 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+  SELECT * FROM CUSTOMER;
++------+----------+-------------+-----------+------------+
+| c_id | name     | address     | city      | ph_no      |
++------+----------+-------------+-----------+------------+
+|    1 | Haviya   | Kolikkad    | TVM       | 1238765974 |
+|    2 | Fathima  | Thoufeeqe   | Kozhikode |  807825453 |
+|    3 | Faaiqua  | Thoufeeqe   | Kozhikode |  944625392 |
+|    4 | Faariha  | Thoufeeqe   | Kozhikode |  807848452 |
+|    5 | Sibugath | Thoufeeqe   | TVM       |  458796232 |
+|    6 | Sahva    | Ochath      | Balussery |       NULL |
+|    7 | Sinu     | Kunnamanglm | Kochi     |       NULL |
++------+----------+-------------+-----------+------------+
+
+ 
+ 
+ 3. Update all prices with 2% of its original price. 
+ 
+ UPDATE PRODUCT SET price = price + (price * 0.02);
+Query OK, 7 rows affected, 1 warning (0.19 sec)
+Rows matched: 7  Changed: 7  Warnings: 1
+
+ SELECT * FROM PRODUCT;
++-----+----------+-------+
+| pid | pname    | price |
++-----+----------+-------+
+|   1 | Notebook | 15.81 |
+|   2 | Pen      | 10.20 |
+|   3 | Eraser   |  3.06 |
+|   4 | Marker   | 24.48 |
+|   5 | Stapler  | 17.09 |
+|   6 | Ruler    | 12.24 |
+|   7 | Glue     | 20.91 |
++-----+----------+-------+
+7 rows in set (0.00 sec)
+
+ 
+ 
+ 4. Change the address, city, phone number of a particular customer.
+  
+  UPDATE CUSTOMER SET address = 'New Street',city = 'TVM',ph_no = 987650123
+4 WHERE c_id = 6;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+  SELECT * FROM CUSTOMER;
++------+----------+-------------+-----------+------------+
+| c_id | name     | address     | city      | ph_no      |
++------+----------+-------------+-----------+------------+
+|    1 | Haviya   | Kolikkad    | TVM       | 1238765974 |
+|    2 | Fathima  | Thoufeeqe   | Kozhikode |  807825453 |
+|    3 | Faaiqua  | Thoufeeqe   | Kozhikode |  944625392 |
+|    4 | Faariha  | Thoufeeqe   | Kozhikode |  807848452 |
+|    5 | Sibugath | Thoufeeqe   | TVM       |  458796232 |
+|    6 | Sahva    | New Street  | TVM       | 9876501234 |
+|    7 | Sinu     | Kunnamanglm | Kochi     |       NULL |
++------+----------+-------------+-----------+------------+
+7 rows in set (0.00 sec)
+
+  
+  
+ 5. Change the quantity of a purchased product of inv_id ‘201’ 
+ 
+ UPDATE INVOICE_ITEM_2 SET quantity = 5 WHERE inv_id = 201;
+Query OK, 2 rows affected (0.11 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+SELECT * FROM INVOICE_ITEM_2;
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|    201 |    1 |        5 |
+|    201 |    2 |        5 |
+|    202 |    3 |        5 |
+|    203 |    4 |        1 |
+|    204 |    1 |        2 |
+|    204 |    5 |        4 |
+|    205 |    2 |        1 |
+|    206 |    6 |        3 |
+|    207 |    3 |        1 |
+|    208 |    4 |        2 |
+|    208 |    5 |        3 |
+|    209 |    6 |        4 |
+|    210 |    1 |        1 |
+|    211 |    2 |        2 |
+|    212 |    3 |        1 |
+|    213 |    4 |        3 |
++--------+------+----------+
+16 rows in set (0.00 sec)
+
+ 
+ c) DML - DELETE 
+
+1. Delete the record of customer id ‘4’. 
+
+SELECT * FROM INVOICE_MASTER_2
+    -> WHERE cust_id = 4;
++--------+---------+------------+
+| inv_id | cust_id | inv_date   |
++--------+---------+------------+
+|    210 |       4 | 2025-07-07 |
++--------+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> DELETE FROM INVOICE_ITEM_2
+    -> WHERE inv_id IN (
+    ->     SELECT inv_id FROM INVOICE_MASTER_2
+    ->     WHERE cust_id = 4
+    -> );
+Query OK, 1 row affected (0.08 sec)
+
+mysql> DELETE FROM INVOICE_MASTER_2
+    -> WHERE cust_id = 4;
+Query OK, 1 row affected (0.10 sec)
+
+mysql> DELETE FROM CUSTOMER
+    -> WHERE c_id = 4;
+Query OK, 1 row affected (0.09 sec)
+
+SELECT * FROM CUSTOMER;
++------+----------+-------------+-----------+------------+
+| c_id | name     | address     | city      | ph_no      |
++------+----------+-------------+-----------+------------+
+|    1 | Haviya   | Kolikkad    | TVM       | 1238765974 |
+|    2 | Fathima  | Thoufeeqe   | Kozhikode |  807825453 |
+|    3 | Faaiqua  | Thoufeeqe   | Kozhikode |  944625392 |
+|    5 | Sibugath | Thoufeeqe   | TVM       |  458796232 |
+|    6 | Sahva    | New Street  | TVM       | 9876501234 |
+|    7 | Sinu     | Kunnamanglm | Kochi     |       NULL |
++------+----------+-------------+-----------+------------+
+6 rows in set (0.00 sec)
+
+
+ 2. Delete all purchase details of items its quantity less than 2. 
+ 
+ DELETE FROM INVOICE_ITEM_2 WHERE quantity < 2;
+Query OK, 4 rows affected (0.11 sec)
+
+SELECT * FROM INVOICE_ITEM_2;
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|    201 |    1 |        5 |
+|    201 |    2 |        5 |
+|    202 |    3 |        5 |
+|    204 |    1 |        2 |
+|    204 |    5 |        4 |
+|    206 |    6 |        3 |
+|    208 |    4 |        2 |
+|    208 |    5 |        3 |
+|    209 |    6 |        4 |
+|    211 |    2 |        2 |
+|    213 |    4 |        3 |
++--------+------+----------+
+11 rows in set (0.00 sec)
+
+ 
+ 3. Delete the purchase details of product ‘pen’ in the in_id ‘101’. 
+ 
+  DELETE FROM INVOICE_ITEM_2 WHERE inv_id = 201 AND pid = 2;
+Query OK, 1 row affected (0.12 sec)
+
+ SELECT * FROM INVOICE_ITEM_2;
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|    201 |    1 |        5 |
+|    202 |    3 |        5 |
+|    204 |    1 |        2 |
+|    204 |    5 |        4 |
+|    206 |    6 |        3 |
+|    208 |    4 |        2 |
+|    208 |    5 |        3 |
+|    209 |    6 |        4 |
+|    211 |    2 |        2 |
+|    213 |    4 |        3 |
++--------+------+----------+
+10 rows in set (0.00 sec)
+
+
+ 
+ 4. Delete details of employees who does not have phone number. 
+ 
+mysql> DELETE FROM EMPLOYEE WHERE number IS NULL;
+Query OK, 2 rows affected (0.12 sec)
+
+ SELECT * FROM EMPLOYEE;
++----+--------+----------+------------+
+| id | name   | address  | number     |
++----+--------+----------+------------+
+|  1 | Aisha  | MG Road  | 9876543210 |
+|  3 | Nafla  | TVM      | 9123456780 |
+|  5 | Mithun | Thrissur | 8899776655 |
++----+--------+----------+------------+
+3 rows in set (0.01 sec)
+
+ 
+ 5. Delete all records from STUDENT table. 
+ 
+ SELECT * FROM STUDENT;
++-----+--------+------------+
+| id  | name   | address    |
++-----+--------+------------+
+| 101 | Amina  | Calicut    |
+| 102 | Rahul  | Kochi      |
+| 103 | Sahva  | TVM        |
+| 104 | Nafla  | Thrissur   |
+| 105 | Mithun | Malappuram |
++-----+--------+------------+
+5 rows in set (0.00 sec)
+
+mysql> DELETE FROM STUDENT;
+Query OK, 5 rows affected (0.11 sec)
+
+mysql> SELECT * FROM STUDENT;
+Empty set (0.00 sec)
+
+
+ 
+ 6. Delete Invoice details of a particular customer "sibugath".
+ 
+  SELECT c_id FROM CUSTOMER
+    -> WHERE name = 'Sibugath';
++------+
+| c_id |
++------+
+|    5 |
++------+
+1 row in set (0.00 sec)
+
+mysql> DELETE FROM INVOICE_ITEM_2
+    -> WHERE inv_id IN (
+    ->     SELECT inv_id
+    ->     FROM INVOICE_MASTER_2
+    ->     WHERE cust_id = 5
+    -> );
+Query OK, 1 row affected (0.10 sec)
+
+mysql> DELETE FROM INVOICE_MASTER_2
+    -> WHERE cust_id = 5;
+Query OK, 1 row affected (0.09 sec)
+
+mysql> DELETE FROM CUSTOMER
+    -> WHERE c_id = 5;
+Query OK, 1 row affected (0.11 sec)
+
+mysql> SELECT * FROM CUSTOMER;
++------+---------+-------------+-----------+------------+
+| c_id | name    | address     | city      | ph_no      |
++------+---------+-------------+-----------+------------+
+|    1 | Haviya  | Kolikkad    | TVM       | 1238765974 |
+|    2 | Fathima | Thoufeeqe   | Kozhikode |  807825453 |
+|    3 | Faaiqua | Thoufeeqe   | Kozhikode |  944625392 |
+|    6 | Sahva   | New Street  | TVM       | 9876501234 |
+|    7 | Sinu    | Kunnamanglm | Kochi     |       NULL |
++------+---------+-------------+-----------+------------+
+5 rows in set (0.00 sec)
+
+
+ 
+ 7. Delete the first two records of INVOICE_ITEM table its purchase quantity is high.
+ 
+ DELETE FROM INVOICE_ITEM_2
+    -> ORDER BY quantity DESC
+    -> LIMIT 2;
+Query OK, 2 rows affected (0.09 sec)
+
+SELECT * FROM INVOICE_ITEM_2;
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|    204 |    1 |        2 |
+|    204 |    5 |        4 |
+|    206 |    6 |        3 |
+|    208 |    4 |        2 |
+|    208 |    5 |        3 |
+|    209 |    6 |        4 |
+|    213 |    4 |        3 |
++--------+------+----------+
+7 rows in set (0.00 sec)
+
+
+ 
