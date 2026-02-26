@@ -613,11 +613,7 @@ mysql> SELECT * FROM CUSTOMER;
  
  7. Delete the first two records of INVOICE_ITEM table its purchase quantity is high.
  
- DELETE FROM INVOICE_ITEM_2 WHERE inv_id = 201 AND pid = 1;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql> 
-mysql> DELETE FROM INVOICE_ITEM_2 WHERE inv_id = 201 AND pid = 2;
+ DELETE FROM INVOICE_ITEM_2 LIMIT 2;
 Query OK, 0 rows affected (0.00 sec)
 
 
