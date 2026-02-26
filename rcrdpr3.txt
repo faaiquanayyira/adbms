@@ -439,20 +439,18 @@ SELECT * FROM INVOICE_MASTER_2
 +--------+---------+------------+
 1 row in set (0.00 sec)
 
-mysql> DELETE FROM INVOICE_ITEM_2
-    -> WHERE inv_id IN (
-    ->     SELECT inv_id FROM INVOICE_MASTER_2
-    ->     WHERE cust_id = 4
-    -> );
-Query OK, 1 row affected (0.08 sec)
+mysql> DELETE FROM INVOICE_ITEM_2 WHERE inv_id = 210;
+Query OK, 0 rows affected (0.02 sec)
 
-mysql> DELETE FROM INVOICE_MASTER_2
-    -> WHERE cust_id = 4;
-Query OK, 1 row affected (0.10 sec)
+mysql> 
+mysql> DELETE FROM INVOICE_MASTER_2 WHERE cust_id = 4;
+Query OK, 0 rows affected (0.03 sec)
 
-mysql> DELETE FROM CUSTOMER
-    -> WHERE c_id = 4;
-Query OK, 1 row affected (0.09 sec)
+mysql> 
+mysql> DELETE FROM CUSTOMER WHERE c_id = 4;
+Query OK, 0 rows affected (0.02 sec)
+
+
 
 SELECT * FROM CUSTOMER;
 +------+----------+-------------+-----------+------------+
@@ -495,12 +493,10 @@ SELECT * FROM INVOICE_ITEM_2;
  3. Delete the purchase details of product ‘pen’ in the in_id ‘101’. 
  
   DELETE FROM INVOICE_ITEM_2
-    -> WHERE inv_id = 201
-    -> AND pid IN (
-    ->     SELECT pid FROM PRODUCT
-    ->     WHERE pname = 'Pen'
-    -> );
-Query OK, 0 rows affected (0.00 sec)
+    -> WHERE inv_id = 101
+    -> AND pid = 101;
+Query OK, 0 rows affected (0.01 sec)
+
 
 mysql> SELECT * FROM PRODUCT;
 +-----+----------+-------+
@@ -582,21 +578,24 @@ Empty set (0.00 sec)
 +------+
 1 row in set (0.00 sec)
 
-mysql> DELETE FROM INVOICE_ITEM_2
-    -> WHERE inv_id IN (
-    ->     SELECT inv_id
-    ->     FROM INVOICE_MASTER_2
-    ->     WHERE cust_id = 5
-    -> );
-Query OK, 1 row affected (0.10 sec)
+mysql> DELETE FROM INVOICE_MASTER_2 WHERE cust_id = 4;
+Query OK, 0 rows affected (0.03 sec)
 
-mysql> DELETE FROM INVOICE_MASTER_2
-    -> WHERE cust_id = 5;
-Query OK, 1 row affected (0.09 sec)
+mysql> 
+mysql> DELETE FROM CUSTOMER WHERE c_id = 4;
+Query OK, 0 rows affected (0.02 sec)
 
-mysql> DELETE FROM CUSTOMER
-    -> WHERE c_id = 5;
-Query OK, 1 row affected (0.11 sec)
+mysql> DELETE FROM INVOICE_ITEM_2 WHERE inv_id = 204;
+Query OK, 2 rows affected (0.14 sec)
+
+mysql> 
+mysql> DELETE FROM INVOICE_MASTER_2 WHERE cust_id = 5;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> 
+mysql> DELETE FROM CUSTOMER WHERE c_id = 5;
+Query OK, 0 rows affected (0.00 sec)
+
 
 mysql> SELECT * FROM CUSTOMER;
 +------+---------+-------------+-----------+------------+
@@ -614,10 +613,13 @@ mysql> SELECT * FROM CUSTOMER;
  
  7. Delete the first two records of INVOICE_ITEM table its purchase quantity is high.
  
- DELETE FROM INVOICE_ITEM_2
-    -> ORDER BY quantity DESC
-    -> LIMIT 2;
-Query OK, 2 rows affected (0.09 sec)
+ DELETE FROM INVOICE_ITEM_2 WHERE inv_id = 201 AND pid = 1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> 
+mysql> DELETE FROM INVOICE_ITEM_2 WHERE inv_id = 201 AND pid = 2;
+Query OK, 0 rows affected (0.00 sec)
+
 
 SELECT * FROM INVOICE_ITEM_2;
 +--------+------+----------+
