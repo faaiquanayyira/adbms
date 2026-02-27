@@ -1,0 +1,191 @@
+3. TCL & DCL COMMANDS
+use rc2;
+
+
+a) TCL COMMANDS 
+ 1. Commit
+ 
+ INSERT INTO PRODUCT VALUES(1,"FAAIQUA");
+Query OK, 1 row affected (0.12 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.00 sec)
+
+
+  
+ 2. Rollback 
+ 
+ SET AUTOCOMMIT = 0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from PRODUCT;
++---------+---------+
+| ROLL_NO | NAME    |
++---------+---------+
+|       1 | FAAIQUA |
++---------+---------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(2,"APPLE");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from PRODUCT;
++---------+---------+
+| ROLL_NO | NAME    |
++---------+---------+
+|       1 | FAAIQUA |
+|       2 | APPLE   |
++---------+---------+
+2 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select * from PRODUCT;
++---------+---------+
+| ROLL_NO | NAME    |
++---------+---------+
+|       1 | FAAIQUA |
++---------+---------+
+1 row in set (0.00 sec)
+
+ 
+ 
+ 
+ 3. Savepoint
+ 
+ mysql> SET AUTOCOMMIT = 0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(2,"APPLE");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(3,"BANANA");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SAVEPOINT sp1;
+Query OK, 0 rows affected (0.00 sec)
+
+
+mysql> UPDATE PRODUCT SET NAME='PEN' WHERE ROLL_NO = 1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SAVEPOINT sp2;
+Query OK, 0 rows affected (0.00 sec)
+
+
+mysql> INSERT INTO PRODUCT VALUES(4,"NOTEBOOK");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM PRODUCT
+    -> ;
++---------+----------+
+| ROLL_NO | NAME     |
++---------+----------+
+|       1 | PEN      |
+|       2 | APPLE    |
+|       3 | BANANA   |
+|       4 | NOTEBOOK |
++---------+----------+
+4 rows in set (0.00 sec)
+
+mysql> SAVEPOINT sp3;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELETE FROM PRODUCT WHERE ROLL_NO=3;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM PRODUCT;
++---------+----------+
+| ROLL_NO | NAME     |
++---------+----------+
+|       1 | PEN      |
+|       2 | APPLE    |
+|       4 | NOTEBOOK |
++---------+----------+
+3 rows in set (0.01 sec)
+
+mysql> ROLLBACK TO sp3;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM PRODUCT;
++---------+----------+
+| ROLL_NO | NAME     |
++---------+----------+
+|       1 | PEN      |
+|       2 | APPLE    |
+|       3 | BANANA   |
+|       4 | NOTEBOOK |
++---------+----------+
+4 rows in set (0.00 sec)
+
+mysql> ROLLBACK TO sp1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM PRODUCT;
++---------+---------+
+| ROLL_NO | NAME    |
++---------+---------+
+|       1 | FAAIQUA |
+|       2 | APPLE   |
+|       3 | BANANA  |
++---------+---------+
+3 rows in set (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.09 sec)
+
+
+
+ 
+ b) DCL COMMAND 
+ use invoice;
+ 
+ Create two users user1, user2 
+ 
+ 1. GRANT:   Give insert and select privilege to user 1 on customer table in the invoice database.
+Give update and delete privilege to user 2 on all tables in the invoice database. 
+
+GRANT INSERT,SELECT ON CUSTOMER TO 'user1'@'localhost';
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> GRANT UPDATE,DELETE ON INVOICE.* TO 'user2'@'localhost';
+Query OK, 0 rows affected (0.16 sec)
+
+ SHOW GRANTS FOR 'user1'@'localhost';
++---------------------------------------------------------------------+
+| Grants for user1@localhost                                          |
++---------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `user1`@`localhost`                           |
+| GRANT SELECT, INSERT ON `INVOICE`.`CUSTOMER` TO `user1`@`localhost` |
+| GRANT SELECT ON `rc2`.`PRODUCT` TO `user1`@`localhost`              |
++---------------------------------------------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> SHOW GRANTS FOR 'user2'@'localhost';
++------------------------------------------------------------+
+| Grants for user2@localhost                                 |
++------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `user2`@`localhost`                  |
+| GRANT UPDATE, DELETE ON `INVOICE`.* TO `user2`@`localhost` |
++------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+
+ 2. REVOKE:   Remove delete privilege of user 2.
+ 
+ REVOKE DELETE ON INVOICE.* FROM 'user2'@'localhost';
+Query OK, 0 rows affected (0.10 sec)
+
+mysql>  SHOW GRANTS FOR 'user2'@'localhost';
++----------------------------------------------------+
+| Grants for user2@localhost                         |
++----------------------------------------------------+
+| GRANT USAGE ON *.* TO `user2`@`localhost`          |
+| GRANT UPDATE ON `INVOICE`.* TO `user2`@`localhost` |
++----------------------------------------------------+
+2 rows in set (0.00 sec)
+
+
+ 
