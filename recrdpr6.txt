@@ -1,0 +1,62 @@
+1.Find the minimum, maximum, and average price of products.
+
+select * from PRODUCT;
++-----+----------+-------+
+| pid | pname    | price |
++-----+----------+-------+
+|   1 | Notebook | 15.81 |
+|   2 | Pen      | 10.20 |
+|   3 | Eraser   |  3.06 |
+|   4 | Marker   | 24.48 |
+|   5 | Stapler  | 17.09 |
+|   6 | Ruler    | 12.24 |
+|   7 | Glue     | 20.91 |
+|   8 | Pen      | 12.00 |
++-----+----------+-------+
+8 rows in set (0.03 sec)
+
+SELECT MIN(price),MAX(price),AVG(price) FROM PRODUCT;
++------------+------------+------------+
+| MIN(price) | MAX(price) | AVG(price) |
++------------+------------+------------+
+|       3.06 |      24.48 |  14.473750 |
++------------+------------+------------+
+1 row in set (0.00 sec)
+
+
+2. Find the number of customers in each city, and only include cities with more than 1 customers.
+
+SELECT * FROM CUSTOMER;
++------+---------+-------------+-----------+------------+
+| c_id | name    | address     | city      | ph_no      |
++------+---------+-------------+-----------+------------+
+|    1 | Haviya  | Kolikkad    | TVM       | 1238765974 |
+|    2 | Fathima | Thoufeeqe   | Kozhikode |  807825453 |
+|    3 | Faaiqua | Thoufeeqe   | Kozhikode |  944625392 |
+|    6 | Sahva   | New Street  | TVM       | 9876501234 |
+|    7 | Sinu    | Kunnamanglm | Kochi     |       NULL |
++------+---------+-------------+-----------+------------+
+
+
+SELECT city, COUNT(*) FROM CUSTOMER GROUP BY city;
++-----------+----------+
+| city      | COUNT(*) |
++-----------+----------+
+| TVM       |        2 |
+| Kozhikode |        2 |
+| Kochi     |        1 |
++-----------+----------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT city, COUNT(*) FROM CUSTOMER GROUP BY city HAVING COUNT(*)>1;
+
++-----------+----------+
+| city      | COUNT(*) |
++-----------+----------+
+| TVM       |        2 |
+| Kozhikode |        2 |
++-----------+----------+
+2 rows in set (0.01 sec)
+
+
+
