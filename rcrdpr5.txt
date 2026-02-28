@@ -1,0 +1,58 @@
+use INVOICE;
+
+1. List all invoice items, avoid duplicates.    
+
+SELECT DISTINCT inv_id FROM INVOICE_ITEM_2;
++--------+
+| inv_id |
++--------+
+|    206 |
+|    208 |
+|    209 |
+|    213 |
++--------+
+4 rows in set (0.00 sec)
+
+
+2. List the customer details who not live in ‘tvm’.
+
+SELECT * FROM CUSTOMER WHERE city != "TVM";
++------+---------+-------------+-----------+-----------+
+| c_id | name    | address     | city      | ph_no     |
++------+---------+-------------+-----------+-----------+
+|    2 | Fathima | Thoufeeqe   | Kozhikode | 807825453 |
+|    3 | Faaiqua | Thoufeeqe   | Kozhikode | 944625392 |
+|    7 | Sinu    | Kunnamanglm | Kochi     |      NULL |
++------+---------+-------------+-----------+-----------+
+3 rows in set (0.00 sec)
+
+
+3. Display the customer details sorted in ascending by city and descending by names.
+
+ SELECT * FROM CUSTOMER  ORDER BY  city ASC, name DESC;
++------+---------+-------------+-----------+------------+
+| c_id | name    | address     | city      | ph_no      |
++------+---------+-------------+-----------+------------+
+|    7 | Sinu    | Kunnamanglm | Kochi     |       NULL |
+|    2 | Fathima | Thoufeeqe   | Kozhikode |  807825453 |
+|    3 | Faaiqua | Thoufeeqe   | Kozhikode |  944625392 |
+|    6 | Sahva   | New Street  | TVM       | 9876501234 |
+|    1 | Haviya  | Kolikkad    | TVM       | 1238765974 |
++------+---------+-------------+-----------+------------+
+5 rows in set (0.00 sec)
+
+
+4. Find the customer names who have ‘e’ or ‘a’ in them and at least 3 characters in length.
+
+SELECT name FROM CUSTOMER WHERE (name LIKE '%a%') OR (name LIKE '%e%') AND name LIKE '___%';
++---------+
+| name    |
++---------+
+| Haviya  |
+| Fathima |
+| Faaiqua |
+| Sahva   |
++---------+
+4 rows in set (0.02 sec)
+
+
