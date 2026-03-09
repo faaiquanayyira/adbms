@@ -1,0 +1,45 @@
+1. List the product names, only include those purchased quantity more than 3.
+
+ SELECT pname from PRODUCT where pid in (select pid from INVOICE_ITEM_2 where quantity>3);
++-------+
+| pname |
++-------+
+| Ruler |
++-------+
+1 row in set (0.02 sec)
+
+
+2. Find the product that has no sale.
+
+select pname from PRODUCT where pid not in (select pid from INVOICE_ITEM_2);
++----------+
+| pname    |
++----------+
+| Notebook |
+| Pen      |
+| Eraser   |
+| Glue     |
+| Pen      |
++----------+
+5 rows in set (0.01 sec)
+
+
+
+3. List the names of all customers who have purchased at least 2 products, making sure that
+no duplicate names are in the result.
+
+select name from CUSTOMER where c_id in (select c_id from INVOICE_MASTER_2 where inv_id in (select inv_id from INVOICE_ITEM_2 GROUP BY inv_id
+ having count(pid)>=2));
++---------+
+| name    |
++---------+
+| Haviya  |
+| Fathima |
+| Faaiqua |
+| Sahva   |
+| Sinu    |
++---------+
+5 rows in set (0.02 sec)
+
+
+
