@@ -1,0 +1,51 @@
+1. List the product name and quantity of invoice items. 
+
+SELECT PRODUCT.pname, INVOICE_ITEM_2.quantity FROM PRODUCT NATURAL
+JOIN INVOICE_ITEM_2;
++---------+----------+
+| pname   | quantity |
++---------+----------+
+| Ruler   |        3 |
+| Marker  |        2 |
+| Stapler |        3 |
+| Ruler   |        4 |
+| Marker  |        3 |
++---------+----------+
+5 rows in set (0.00 sec)
+
+
+2. Display the customer name, product name, invoice date of purchased item ‘marker’.
+
+SELECT CUSTOMER.name, PRODUCT.pname, INVOICE_MASTER_2.inv_date FROM CUSTOMER JOIN INVOICE_MASTER_2 ON CUSTOMER.c_id = INVOICE_MASTER_2.cust_id JOIN INVOICE_ITEM_2 ON INVOICE_MASTER_2.inv_id = INVOICE_ITEM_2.inv_id JOIN PRODUCT ON INVOICE_ITEM_2.pid = PRODUCT.pid WHERE PRODUCT.pname ='marker';
++---------+--------+------------+
+| name    | pname  | inv_date   |
++---------+--------+------------+
+| Faaiqua | Marker | 2025-05-28 |
+| Sinu    | Marker | 2025-11-18 |
++---------+--------+------------+
+2 rows in set (0.00 sec)
+ 
+3. Display all customer details and invoice details must include customer has not purchased items.
+
+select CUSTOMER.name, CUSTOMER.c_id, INVOICE_MASTER_2.inv_id from CUSTOMER LEFT OUTER JOIN INVOICE_MASTER_2 ON CUSTOMER.c_id = INVOICE_MASTER_2
+.cust_id;
++-----------+------+--------+
+| name      | c_id | inv_id |
++-----------+------+--------+
+| Haviya    |    1 |    201 |
+| Haviya    |    1 |    202 |
+| Haviya    |    1 |    203 |
+| Fathima   |    2 |    204 |
+| Fathima   |    2 |    205 |
+| Fathima   |    2 |    206 |
+| Faaiqua   |    3 |    207 |
+| Faaiqua   |    3 |    208 |
+| Faaiqua   |    3 |    209 |
+| Sahva     |    6 |    212 |
+| Sinu      |    7 |    213 |
+| hameedath |   10 |   NULL |
++-----------+------+--------+
+12 rows in set (0.00 sec)
+
+
+
