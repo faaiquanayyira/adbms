@@ -1,0 +1,90 @@
+1. Write a MongoDB query to create an INVOICE database and collections (CUSTOMER,PRODUCT) and its corresponding documents.
+
+use INVOICE
+switched to db INVOICE
+INVOICE> db.createCollection("CUSTOMER")
+{ ok: 1 }
+INVOICE> db.createCollection("PRODUCT")
+{ ok: 1 }
+INVOICE> 
+
+
+2. Write a MongoDB query to find all documents from the collection CUSTOMER 
+
+db.CUSTOMER.insert({"name":"sahva","age":"23","city":"Calicut"})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('69b3de32bdd086e37def634d') }
+}
+INVOICE> db.CUSTOMER.insert({"name":"sinu","age":"23","city":"Calicut"})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('69b3de47bdd086e37def634e') }
+}
+INVOICE> db.CUSTOMER.insert({"name":"faaiqua","age":"23","city":"kochi"})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('69b3de56bdd086e37def634f') }
+}
+INVOICE> db.CUSTOMER.find()
+[
+  {
+    _id: ObjectId('69b3de32bdd086e37def634d'),
+    name: 'sahva',
+    age: '23',
+    city: 'Calicut'
+  },
+  {
+    _id: ObjectId('69b3de47bdd086e37def634e'),
+    name: 'sinu',
+    age: '23',
+    city: 'Calicut'
+  },
+  {
+    _id: ObjectId('69b3de56bdd086e37def634f'),
+    name: 'faaiqua',
+    age: '23',
+    city: 'kochi'
+  }
+]
+
+ 3. Write a MongoDB query to update the city in the collection CUSTOMER.
+ 
+ db.CUSTOMER.updateMany({city:"Calicut"},{$set:{city:"Kozhikode"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+
+  db.CUSTOMER.find()
+[
+  {
+    _id: ObjectId('69b3de32bdd086e37def634d'),
+    name: 'sahva',
+    age: '23',
+    city: 'Kozhikode'
+  },
+  {
+    _id: ObjectId('69b3de47bdd086e37def634e'),
+    name: 'sinu',
+    age: '23',
+    city: 'Kozhikode'
+  },
+  {
+    _id: ObjectId('69b3de56bdd086e37def634f'),
+    name: 'faaiqua',
+    age: '23',
+    city: 'kochi'
+  }
+]
+
+ 4. Write a MongoDB query to delete the first matched document whose city is “Calicut”.
+ 
+db.CUSTOMER.deleteOne({city:"Calicut"})
+{ acknowledged: true, deletedCount: 1 }
+
+
+ 
