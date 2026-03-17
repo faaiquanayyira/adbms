@@ -8,6 +8,44 @@ INVOICE> db.createCollection("PRODUCT")
 { ok: 1 }
 INVOICE> 
 
+db.PRODUCT.insertMany([
+  {
+    name: "apple",
+    price: 50,
+    customer_id: ObjectId("69b3de32bdd086e37def634d") // sahva
+  },
+  {
+    name: "banana",
+    price: 100,
+    customer_id: ObjectId("69b3de47bdd086e37def634e") // sinu
+  },
+  {
+    name: "mango",
+    price: 150,
+    customer_id: ObjectId("69b3de32bdd086e37def634d") // sahva
+  }
+])
+
+db.CUSTOMER.insertMany([
+  {
+    _id: ObjectId("69b3de32bdd086e37def634d"),
+    name: "sahva",
+    age: "23",
+    city: "Calicut"
+  },
+  {
+    _id: ObjectId("69b3de47bdd086e37def634e"),
+    name: "sinu",
+    age: "23",
+    city: "Calicut"
+  },
+  {
+    _id: ObjectId("69b3de56bdd086e37def634f"),
+    name: "faaiqua",
+    age: "23",
+    city: "kochi"
+  }
+])
 
 2. Write a MongoDB query to find all documents from the collection CUSTOMER 
 
